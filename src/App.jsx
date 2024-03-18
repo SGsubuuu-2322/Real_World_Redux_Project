@@ -1,37 +1,40 @@
 // import React from 'react'
 
-import { useDispatch, useSelector } from "react-redux";
-import { userDelete } from "./Store/reducers/UserReducer";
-
-// import { useState } from "react";
+import { Link, Route, Routes } from "react-router-dom";
+import Home from "./Components/Home";
+import Users from "./Components/Users";
+import Products from "./Components/Products";
 
 const App = () => {
-  // const [users] = useState();
-  const dispatch = useDispatch();
-  const { users } = useSelector((state) => state.userReducer);
-
-  const handleDelete = (index) => {
-    dispatch(userDelete(index));
-  };
   return (
-    <div className="container m-auto bg-red-200 p-10 mt-5">
-      <h1 className="text-4xl text-center text-red-900">All Users:</h1>
+    <div>
+      <nav className="py-5 container bg-red-200 m-auto p-6 mt-2 flex justify-center gap-10">
+        <Link
+          className="text-red-900 hover:underline hover:underline-offset-2"
+          to="/"
+        >
+          Home
+        </Link>
+        <Link
+          className="text-red-900 hover:underline hover:underline-offset-2"
+          to="/users"
+        >
+          Users
+        </Link>
+        <Link
+          className="text-red-900 hover:underline hover:underline-offset-2"
+          to="/products"
+        >
+          Products
+        </Link>
+      </nav>
+      <hr />
 
-      <ul>
-        {users.map((user, index) => {
-          return (
-            <li key={index} className="text-xl text-red-700 text-center">
-              {user.name}
-              <span
-                onClick={() => handleDelete(index)}
-                className="text-red-900 font-semibold ml-2 cursor-pointer font-black"
-              >
-                X
-              </span>
-            </li>
-          );
-        })}
-      </ul>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/users" element={<Users />} />
+        <Route path="/products" element={<Products />} />
+      </Routes>
     </div>
   );
 };
