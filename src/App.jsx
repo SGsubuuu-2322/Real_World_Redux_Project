@@ -1,9 +1,12 @@
 // import React from 'react'
 
+import { useSelector } from "react-redux";
+
 // import { useState } from "react";
 
 const App = () => {
   // const [users] = useState();
+  const { users } = useSelector((state) => state.userReducer);
   return (
     <div className="container m-auto bg-red-200 p-10 mt-5">
       <h1 className="text-4xl text-center text-red-900">All Users:</h1>
